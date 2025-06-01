@@ -32,12 +32,7 @@
             animation: gradientShift 8s ease-in-out infinite;
         }
         
-        @keyframes gradientShift {
-            0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-            25% { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-            50% { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-            75% { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-        }
+      
         
         .glass {
             background: rgba(255, 255, 255, 0.1);
@@ -168,7 +163,7 @@
     </style>
 </head>
 
-<body class="min-h-screen gradient-bg text-white overflow-x-hidden">
+<body class="min-h-screen gradient-bg text-white overflow-x-hidden" id="units">
       
     </div>
 
@@ -224,14 +219,21 @@
         <div class="text-center" data-aos="fade-up">
             <h1 class="text-5xl md:text-7xl font-bold mb-6 typewriter" style="width: fit-content; margin: 0 auto;">
                 PPL IMP<br>50+ Easy
+                <br>
+                <br>
+                <h2>
+                    Scroll down to Access units
+                </h2>
             </h1>
             <p class="text-xl md:text-2xl mb-8 opacity-90" data-aos="fade-up" data-aos-delay="300">
                 Master Programming Language Principles with Interactive Learning
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="600">
-                <button class="glass px-8 py-4 rounded-lg font-semibold hover-float pulse-glow">
-                    <i class="fas fa-play mr-2"></i>Start Learning
+                <a href="#units">
+                    <button class="glass px-8 py-4 rounded-lg font-semibold hover-float pulse-glow" id="units">
+                    <i class="fas fa-play mr-2"></i>Start Learning Scroll down
                 </button>
+                </a>
                 <button class="glass px-8 py-4 rounded-lg font-semibold hover-float" onclick="openModal('aboutModal')">
                     <i class="fas fa-info-circle mr-2"></i>Learn More
                 </button>
@@ -256,7 +258,7 @@
                 <!-- Unit 6 -->
                 <div class="folder-3d hover-float glass p-6 rounded-xl" data-aos="zoom-in" data-aos-delay="100">
                     <div class="text-center">
-                        <div class="text-4xl mb-4">
+                        <div class="text-4xl mb-4" id="units">
                             <i class="fas fa-folder text-yellow-400"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-2">Unit 6</h3>
