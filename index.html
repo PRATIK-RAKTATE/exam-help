@@ -1,125 +1,696 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>learn with pratik</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn with Pratik - Interactive Learning Platform</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+            25% { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+            50% { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+            75% { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hover-float {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-float:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .folder-3d {
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .folder-3d:hover {
+            transform: perspective(1000px) rotateX(-15deg) rotateY(5deg);
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+        }
+        
+        .navbar-slide {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-slide.visible {
+            transform: translateY(0);
+        }
+        
+        .loading-bar {
+            width: 0%;
+            animation: loadingProgress 3s ease-in-out forwards;
+        }
+        
+        @keyframes loadingProgress {
+            to { width: 100%; }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #fff;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #fff; }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .tooltip {
+            position: relative;
+        }
+        
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .folder-3d {
+                transform-style: initial;
+            }
+            
+            .folder-3d:hover {
+                transform: scale(1.05);
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-linear-to-r from-blue-500 via-cyan-500 to-teal-500">
-    <div class="text">
-        <h1>PPL IMP 
-            <br>
-            50+ Easy
-        </h1>
-
+<body class="min-h-screen gradient-bg text-white overflow-x-hidden">
+      
     </div>
-    <div class="container">
 
-    <a href="./pyq/u6.html">
-        <section class="relative group flex flex-col items-center justify-center w-full h-full">
-        <div class="file relative w-60 h-40 cursor-pointer origin-bottom [perspective:1500px] z-50">
-            <div
-                class="work-5 bg-amber-600 w-full h-full origin-top rounded-2xl rounded-tl-none group-hover:shadow-[0_20px_40px_rgba(0,0,0,.2)] transition-all ease duration-300 relative after:absolute after:content-[''] after:bottom-[99%] after:left-0 after:w-20 after:h-4 after:bg-amber-600 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[15px] before:left-[75.5px] before:w-4 before:h-4 before:bg-amber-600 before:[clip-path:polygon(0_35%,0%_100%,50%_100%);]">
+    <!-- Navigation -->
+    <nav class="navbar-slide glass fixed w-full top-0 z-40 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold">
+                <i class="fas fa-graduation-cap mr-2"></i>
+                Learn with Pratik
             </div>
-            <div
-                class="work-4 absolute inset-1 bg-zinc-400 rounded-2xl transition-all ease duration-300 origin-bottom select-none group-hover:[transform:rotateX(-20deg)]">
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-blue-300 transition-colors tooltip" data-tooltip="Home">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <a href="#units" class="hover:text-blue-300 transition-colors tooltip" data-tooltip="Study Units">
+                    <i class="fas fa-book mr-1"></i>Units
+                </a>
+                <a href="#progress" class="hover:text-blue-300 transition-colors tooltip" data-tooltip="Your Progress">
+                    <i class="fas fa-chart-line mr-1"></i>Progress
+                </a>
+                <a href="#about" class="hover:text-blue-300 transition-colors tooltip" data-tooltip="About">
+                    <i class="fas fa-info-circle mr-1"></i>About
+                </a>
             </div>
-            <div
-                class="work-3 absolute inset-1 bg-zinc-300 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-30deg)]">
-            </div>
-            <div
-                class="work-2 absolute inset-1 bg-zinc-200 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-38deg)]">
-            </div>
-            <div
-                class="work-1 absolute bottom-0 bg-gradient-to-t from-amber-500 to-amber-400 w-full h-[156px] rounded-2xl rounded-tr-none after:absolute after:content-[''] after:bottom-[99%] after:right-0 after:w-[146px] after:h-[16px] after:bg-amber-400 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[10px] before:right-[142px] before:size-3 before:bg-amber-400 before:[clip-path:polygon(100%_14%,50%_100%,100%_100%);] transition-all ease duration-300 origin-bottom flex items-end group-hover:shadow-[inset_0_20px_40px_#fbbf24,_inset_0_-20px_40px_#d97706] group-hover:[transform:rotateX(-46deg)_translateY(1px)]">
-            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <p class="text-3xl pt-4 ">Unit 6</p>
-    </section>
-    </a>
-    <a href="/pyq/u5.html">
-        <section class="relative group flex flex-col items-center justify-center w-full h-full">
-        <div class="file relative w-60 h-40 cursor-pointer origin-bottom [perspective:1500px] z-50">
-            <div
-                class="work-5 bg-amber-600 w-full h-full origin-top rounded-2xl rounded-tl-none group-hover:shadow-[0_20px_40px_rgba(0,0,0,.2)] transition-all ease duration-300 relative after:absolute after:content-[''] after:bottom-[99%] after:left-0 after:w-20 after:h-4 after:bg-amber-600 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[15px] before:left-[75.5px] before:w-4 before:h-4 before:bg-amber-600 before:[clip-path:polygon(0_35%,0%_100%,50%_100%);]">
-            </div>
-            <div
-                class="work-4 absolute inset-1 bg-zinc-400 rounded-2xl transition-all ease duration-300 origin-bottom select-none group-hover:[transform:rotateX(-20deg)]">
-            </div>
-            <div
-                class="work-3 absolute inset-1 bg-zinc-300 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-30deg)]">
-            </div>
-            <div
-                class="work-2 absolute inset-1 bg-zinc-200 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-38deg)]">
-            </div>
-            <div
-                class="work-1 absolute bottom-0 bg-gradient-to-t from-amber-500 to-amber-400 w-full h-[156px] rounded-2xl rounded-tr-none after:absolute after:content-[''] after:bottom-[99%] after:right-0 after:w-[146px] after:h-[16px] after:bg-amber-400 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[10px] before:right-[142px] before:size-3 before:bg-amber-400 before:[clip-path:polygon(100%_14%,50%_100%,100%_100%);] transition-all ease duration-300 origin-bottom flex items-end group-hover:shadow-[inset_0_20px_40px_#fbbf24,_inset_0_-20px_40px_#d97706] group-hover:[transform:rotateX(-46deg)_translateY(1px)]">
-            </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden mt-4 space-y-2 hidden">
+            <a href="#home" class="block py-2 px-4 hover:bg-white/10 rounded transition-colors">
+                <i class="fas fa-home mr-2"></i>Home
+            </a>
+            <a href="#units" class="block py-2 px-4 hover:bg-white/10 rounded transition-colors">
+                <i class="fas fa-book mr-2"></i>Units
+            </a>
+            <a href="#progress" class="block py-2 px-4 hover:bg-white/10 rounded transition-colors">
+                <i class="fas fa-chart-line mr-2"></i>Progress
+            </a>
+            <a href="#about" class="block py-2 px-4 hover:bg-white/10 rounded transition-colors">
+                <i class="fas fa-info-circle mr-2"></i>About
+            </a>
         </div>
-        <p class="text-3xl pt-4 ">Unit 5</p>
-    </section>
-    </a>
+    </nav>
 
-    <a href="/pyq/u4.html">
-        <section class="relative group flex flex-col items-center justify-center w-full h-full">
-        <div class="file relative w-60 h-40 cursor-pointer origin-bottom [perspective:1500px] z-50">
-            <div
-                class="work-5 bg-amber-600 w-full h-full origin-top rounded-2xl rounded-tl-none group-hover:shadow-[0_20px_40px_rgba(0,0,0,.2)] transition-all ease duration-300 relative after:absolute after:content-[''] after:bottom-[99%] after:left-0 after:w-20 after:h-4 after:bg-amber-600 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[15px] before:left-[75.5px] before:w-4 before:h-4 before:bg-amber-600 before:[clip-path:polygon(0_35%,0%_100%,50%_100%);]">
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center">
+        <div class="text-center" data-aos="fade-up">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 typewriter" style="width: fit-content; margin: 0 auto;">
+                PPL IMP<br>50+ Easy
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90" data-aos="fade-up" data-aos-delay="300">
+                Master Programming Language Principles with Interactive Learning
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="600">
+                <button class="glass px-8 py-4 rounded-lg font-semibold hover-float pulse-glow">
+                    <i class="fas fa-play mr-2"></i>Start Learning
+                </button>
+                <button class="glass px-8 py-4 rounded-lg font-semibold hover-float" onclick="openModal('aboutModal')">
+                    <i class="fas fa-info-circle mr-2"></i>Learn More
+                </button>
             </div>
-            <div
-                class="work-4 absolute inset-1 bg-zinc-400 rounded-2xl transition-all ease duration-300 origin-bottom select-none group-hover:[transform:rotateX(-20deg)]">
-            </div>
-            <div
-                class="work-3 absolute inset-1 bg-zinc-300 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-30deg)]">
-            </div>
-            <div
-                class="work-2 absolute inset-1 bg-zinc-200 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-38deg)]">
-            </div>
-            <div
-                class="work-1 absolute bottom-0 bg-gradient-to-t from-amber-500 to-amber-400 w-full h-[156px] rounded-2xl rounded-tr-none after:absolute after:content-[''] after:bottom-[99%] after:right-0 after:w-[146px] after:h-[16px] after:bg-amber-400 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[10px] before:right-[142px] before:size-3 before:bg-amber-400 before:[clip-path:polygon(100%_14%,50%_100%,100%_100%);] transition-all ease duration-300 origin-bottom flex items-end group-hover:shadow-[inset_0_20px_40px_#fbbf24,_inset_0_-20px_40px_#d97706] group-hover:[transform:rotateX(-46deg)_translateY(1px)]">
+            
+            <!-- Live Clock -->
+            <div class="mt-8 glass p-4 rounded-lg inline-block" data-aos="fade-up" data-aos-delay="900">
+                <i class="fas fa-clock mr-2"></i>
+                <span id="liveClock"></span>
             </div>
         </div>
-        <p class="text-3xl pt-4 ">Unit 4</p>
     </section>
-    </a>
 
-    <a href="/pyq/u3.html">
-        <section class="relative group flex flex-col items-center justify-center w-full h-full">
-        <div class="file relative w-60 h-40 cursor-pointer origin-bottom [perspective:1500px] z-50">
-            <div
-                class="work-5 bg-amber-600 w-full h-full origin-top rounded-2xl rounded-tl-none group-hover:shadow-[0_20px_40px_rgba(0,0,0,.2)] transition-all ease duration-300 relative after:absolute after:content-[''] after:bottom-[99%] after:left-0 after:w-20 after:h-4 after:bg-amber-600 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[15px] before:left-[75.5px] before:w-4 before:h-4 before:bg-amber-600 before:[clip-path:polygon(0_35%,0%_100%,50%_100%);]">
-            </div>
-            <div
-                class="work-4 absolute inset-1 bg-zinc-400 rounded-2xl transition-all ease duration-300 origin-bottom select-none group-hover:[transform:rotateX(-20deg)]">
-            </div>
-            <div
-                class="work-3 absolute inset-1 bg-zinc-300 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-30deg)]">
-            </div>
-            <div
-                class="work-2 absolute inset-1 bg-zinc-200 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-38deg)]">
-            </div>
-            <div
-                class="work-1 absolute bottom-0 bg-gradient-to-t from-amber-500 to-amber-400 w-full h-[156px] rounded-2xl rounded-tr-none after:absolute after:content-[''] after:bottom-[99%] after:right-0 after:w-[146px] after:h-[16px] after:bg-amber-400 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[10px] before:right-[142px] before:size-3 before:bg-amber-400 before:[clip-path:polygon(100%_14%,50%_100%,100%_100%);] transition-all ease duration-300 origin-bottom flex items-end group-hover:shadow-[inset_0_20px_40px_#fbbf24,_inset_0_-20px_40px_#d97706] group-hover:[transform:rotateX(-46deg)_translateY(1px)]">
+    <!-- Units Section -->
+    <section id="units" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">
+                <i class="fas fa-book-open mr-3"></i>Study Units
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Unit 6 -->
+                <div class="folder-3d hover-float glass p-6 rounded-xl" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-folder text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Unit 6</h3>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="bg-red-500 px-2 py-1 rounded text-xs">Advanced</span>
+                            <span class="bg-blue-500 px-2 py-1 rounded text-xs">5 Questions</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-center space-x-1">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-gray-400"></i>
+                            </div>
+                        </div>
+                        <a href="/pyq/u6.html">
+
+                            <button class="w-full bg-gradient-to-r from-purple-500 to-pink-500 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all" >
+                            <i class="fas fa-arrow-right mr-2"></i>Start Unit
+                        </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Unit 5 -->
+                <div class="folder-3d hover-float glass p-6 rounded-xl" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-folder text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Unit 5</h3>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="bg-orange-500 px-2 py-1 rounded text-xs">Intermediate</span>
+                            <span class="bg-blue-500 px-2 py-1 rounded text-xs">5 Questions</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-center space-x-1">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                        <a href="/pyq/u5.html">
+                        <button class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 py-2 rounded-lg font-semibold hover:from-blue-600 hover:to-cyan-600 transition-all" >
+                            <i class="fas fa-arrow-right mr-2"></i>Start Unit
+                        </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Unit 4 -->
+                <div class="folder-3d hover-float glass p-6 rounded-xl" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-folder text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Unit 4</h3>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="bg-green-500 px-2 py-1 rounded text-xs">Beginner</span>
+                            <span class="bg-blue-500 px-2 py-1 rounded text-xs">5 Questions</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-center space-x-1">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="far fa-star text-gray-400"></i>
+                                <i class="far fa-star text-gray-400"></i>
+                            </div>
+                        </div>
+                        <a href="/pyq/u4.html">
+                        <button class="w-full bg-gradient-to-r from-green-500 to-teal-500 py-2 rounded-lg font-semibold hover:from-green-600 hover:to-teal-600 transition-all" >
+                            <i class="fas fa-arrow-right mr-2"></i>Start Unit
+                        </button>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Unit 3 -->
+                <div class="folder-3d hover-float glass p-6 rounded-xl" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-folder text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Unit 3</h3>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="bg-green-500 px-2 py-1 rounded text-xs">Beginner</span>
+                            <span class="bg-blue-500 px-2 py-1 rounded text-xs">5 Questions</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-center space-x-1">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="far fa-star text-gray-400"></i>
+                                <i class="far fa-star text-gray-400"></i>
+                                <i class="far fa-star text-gray-400"></i>
+                            </div>
+                        </div>
+                        <a href="/pyq/u3.html">
+                        <button class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 py-2 rounded-lg font-semibold hover:from-indigo-600 hover:to-purple-600 transition-all" >
+                            <i class="fas fa-arrow-right mr-2"></i>Start Unit
+                        </button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <p class="text-3xl pt-4 ">Unit 3</p>
     </section>
-    </a>
+
+    <!-- Progress Section -->
+    <section id="progress" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">
+                <i class="fas fa-chart-line mr-3"></i>Your Progress
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-6 rounded-xl text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl text-green-400 mb-4">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Completed</h3>
+                    <p class="text-4xl font-bold text-green-400">2/6</p>
+                    <p class="text-gray-300">Units Finished</p>
+                </div>
+                
+                <div class="glass p-6 rounded-xl text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl text-blue-400 mb-4">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Study Time</h3>
+                    <p class="text-4xl font-bold text-blue-400">24h</p>
+                    <p class="text-gray-300">Total Hours</p>
+                </div>
+                
+                <div class="glass p-6 rounded-xl text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Average Score</h3>
+                    <p class="text-4xl font-bold text-yellow-400">85%</p>
+                    <p class="text-gray-300">Success Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="glass p-8 rounded-xl max-w-md mx-auto" data-aos="zoom-in">
+                <h3 class="text-2xl font-bold mb-4">
+                    <i class="fas fa-clock mr-2 text-red-400"></i>
+                    Content Available At
+                </h3>
+                <div class="text-4xl font-bold mb-4" id="countdown">10:00 AM</div>
+                <div class="text-lg text-gray-300">Next content release</div>
+                <div class="w-full bg-gray-700 rounded-full h-2 mt-4">
+                    <div class="bg-gradient-to-r from-red-500 to-pink-500 h-2 rounded-full transition-all duration-1000" style="width: 65%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass py-8 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h4 class="text-xl font-bold">Learn with Pratik</h4>
+                    <p class="text-gray-300">Excellence in Programming Education</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-2xl hover:text-blue-300 transition-colors tooltip" data-tooltip="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-2xl hover:text-blue-300 transition-colors tooltip" data-tooltip="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-2xl hover:text-blue-300 transition-colors tooltip" data-tooltip="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-2xl hover:text-blue-300 transition-colors tooltip" data-tooltip="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-6 pt-6">
+                <p class="text-gray-300">&copy; 2025 Learn with Pratik. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="glass p-8 rounded-xl max-w-md mx-4 animate__animated animate__zoomIn">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">About This Platform</h3>
+                <button onclick="closeModal('aboutModal')" class="text-2xl hover:text-red-400 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="text-gray-300 mb-6">
+                This interactive learning platform is designed to help students master Programming Language Principles (PPL) through engaging content and hands-on practice. Each unit contains carefully curated questions and examples.
+            </p>
+            <div class="flex space-x-4">
+                <button onclick="closeModal('aboutModal')" class="glass px-6 py-2 rounded-lg hover-float">
+                    Close
+                </button>
+                <button class="bg-blue-500 px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                    Get Started
+                </button>
+            </div>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-        crossorigin="anonymous"></script>
-    <div class="message">
-        <h3>
-        Content avalable at sharp 10:00
-    </h3>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed top-20 right-4 glass p-4 rounded-lg hidden z-50 max-w-sm">
+        <div class="flex items-center">
+            <div class="text-green-400 mr-3">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div>
+                <p class="font-semibold" id="toastTitle">Success!</p>
+                <p class="text-sm text-gray-300" id="toastMessage">Action completed successfully.</p>
+            </div>
+            <button onclick="hideToast()" class="ml-4 text-gray-400 hover:text-white">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
     </div>
+
+    <!-- Floating Action Button -->
+    <button id="scrollToTop" class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 p-3 rounded-full shadow-lg transition-all duration-300 z-40 hidden">
+        <i class="fas fa-arrow-up text-white"></i>
+    </button>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Hide loading screen after 3 seconds
+        setTimeout(() => {
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.querySelector('.navbar-slide').classList.add('visible');
+        }, 3000);
+
+        // Live clock
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('liveClock').textContent = timeString;
+        }
+        
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollBtn = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollBtn.classList.remove('hidden');
+            } else {
+                scrollBtn.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('scrollToTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        // Toast notification functions
+        function showToast(title, message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+            
+            toast.classList.remove('hidden');
+            toast.classList.add('animate__animated', 'animate__slideInRight');
+            
+            setTimeout(() => {
+                hideToast();
+            }, 0);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('animate__slideOutRight');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('animate__animated', 'animate__slideInRight', 'animate__slideOutRight');
+            }, 300);
+        }
+
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Press 'Escape' to close modals
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+            
+            // Press 'H' to go to home
+            if (e.key === 'h' || e.key === 'H') {
+                if (!e.ctrlKey && !e.altKey) {
+                    document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // Add some interactive particles effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: rgba(255,255,255,0.5);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1;
+                animation: float 6s linear infinite;
+            `;
+            
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+
+        // Add the particle animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Welcome message
+        setTimeout(() => {
+            showToast('Welcome!', 'Welcome to the interactive learning platform!');
+        }, 4000);
+    </script>
 </body>
-
 </html>
