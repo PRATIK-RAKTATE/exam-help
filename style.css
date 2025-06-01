@@ -9,7 +9,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    }
+    .message {
+        display: flex;
+        justify-content: center;
+    }
 }
 
 .text {
